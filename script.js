@@ -1,27 +1,43 @@
-function createPlayer(name) {
-  let playerName = name;
+function Player(params) {
+  let playerName = params;
   let score = 0;
 
-  function getName() {
-    return playerName;
-  }
-
-  function setName(params) {
+  const setPlayer = (params) => {
     playerName = params;
-  }
+  };
 
-  function increaseScore() {
-    score++;
-  }
+  const getName = () => playerName;
 
-  function getScore() {
-    return score;
-  }
+  const increaseScore = () => score++;
+
+  const getScore = () => score;
 
   return {
     getName,
-    setName,
+    setPlayer,
     increaseScore,
     getScore,
+  };
+}
+
+function Gameboard() {
+  const board = [];
+
+  const resetBoard = () => {
+    for (let i = 1; i <= 9; i++) {
+      board.push("");
+    }
+  };
+
+  const getBoard = () => board;
+
+  const insert = (index, params) => {
+    board[index] = params;
+  };
+
+  return {
+    resetBoard,
+    getBoard,
+    insert,
   };
 }
