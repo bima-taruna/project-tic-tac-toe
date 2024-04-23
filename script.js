@@ -15,12 +15,15 @@ function Player(params, symbol) {
 
   const getSymbol = () => playerSymbol;
 
+  const resetScore = () => (score = 0);
+
   return {
     getName,
     setPlayer,
     increaseScore,
     getScore,
     getSymbol,
+    resetScore,
   };
 }
 
@@ -108,6 +111,7 @@ let game = (function GameController() {
 
   function checkWin() {
     let roundWon = false;
+    let currentPlayerScore = activePlayer.getScore();
     for (let i = 0; i < winningCondition.length; i++) {
       const condition = winningCondition[i];
       const cellA = board.getField(condition[0]);
@@ -126,11 +130,31 @@ let game = (function GameController() {
     if (roundWon) {
       console.log(`${activePlayer.getName()} won!`);
       activePlayer.increaseScore();
+      restartRound();
       console.log(activePlayer.getScore());
     } else if (!board.getBoard().includes("")) {
       console.log("Draw!");
+      restartRound();
+    } else if (roundWon && currentPlayerScore == 3) {
+      console.log(`${activePlayer.getName()} WIN!`);
+      restartGame();
     } else {
       switchPlayerTurn();
     }
+  }
+
+  function restartRound() {
+    activePlayer = players[0];
+    board.resetBoard();
+    printNewRound();
+    cells.forEach((cell) => (cell.textContent = ""));
+  }
+
+  function restartGame() {
+    activePlayer = players[0];
+    board.resetBoard();
+    printNewRound();
+    cells.forEach((cell) => (cell.textContent = ""));
+    players.forEach((player) => player.resetScore());
   }
 })();
