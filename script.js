@@ -85,7 +85,6 @@ let game = (function GameController() {
       return;
     }
     updateCell(this, cellIndex);
-    switchPlayerTurn();
     checkWin();
   }
 
@@ -107,5 +106,31 @@ let game = (function GameController() {
     console.log(`${getActivePlayer().getName()}'s turn .`);
   }
 
-  function checkWin() {}
+  function checkWin() {
+    let roundWon = false;
+    for (let i = 0; i < winningCondition.length; i++) {
+      const condition = winningCondition[i];
+      const cellA = board.getField(condition[0]);
+      const cellB = board.getField(condition[1]);
+      const cellC = board.getField(condition[2]);
+
+      if (cellA == "" || cellB == "" || cellC == "") {
+        continue;
+      }
+      if (cellA == cellB && cellB == cellC) {
+        roundWon = true;
+        break;
+      }
+    }
+
+    if (roundWon) {
+      console.log(`${activePlayer.getName()} won!`);
+      activePlayer.increaseScore();
+      console.log(activePlayer.getScore());
+    } else if (!board.getBoard().includes("")) {
+      console.log("Draw!");
+    } else {
+      switchPlayerTurn();
+    }
+  }
 })();
