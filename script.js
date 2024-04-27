@@ -50,7 +50,7 @@ function Gameboard() {
   };
 }
 
-let game = (function GameController() {
+let game = (function () {
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
     [0, 1, 2],
@@ -130,14 +130,16 @@ let game = (function GameController() {
     if (roundWon) {
       console.log(`${activePlayer.getName()} won!`);
       activePlayer.increaseScore();
-      restartRound();
       console.log(activePlayer.getScore());
+      if (currentPlayerScore == 2) {
+        console.log(`${activePlayer.getName()} WIN!`);
+        restartGame();
+      } else {
+        restartRound();
+      }
     } else if (!board.getBoard().includes("")) {
       console.log("Draw!");
       restartRound();
-    } else if (roundWon && currentPlayerScore == 3) {
-      console.log(`${activePlayer.getName()} WIN!`);
-      restartGame();
     } else {
       switchPlayerTurn();
     }
