@@ -56,6 +56,8 @@ let game = (function () {
   const playersTurnStatus = document.querySelector(".player-turn");
   const playerOneNameScreen = document.querySelector(".p1");
   const playerTwoNameScreen = document.querySelector(".p2");
+  const playerOneScore = document.querySelector(".player-one-score");
+  const playerTwoScore = document.querySelector(".player-two-score");
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
     [0, 1, 2],
@@ -139,6 +141,8 @@ let game = (function () {
     if (roundWon) {
       console.log(`${activePlayer.getName()} won!`);
       activePlayer.increaseScore();
+      playerOneScore.textContent = players[0].getScore();
+      playerTwoScore.textContent = players[1].getScore();
       console.log(activePlayer.getScore());
       if (currentPlayerScore == 2) {
         console.log(`${activePlayer.getName()} WIN!`);
@@ -162,6 +166,8 @@ let game = (function () {
   }
 
   function restartGame() {
+    playerOneScore.textContent = "0";
+    playerTwoScore.textContent = "0";
     activePlayer = players[0];
     board.resetBoard();
     printNewRound();
