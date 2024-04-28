@@ -164,7 +164,7 @@ let game = (function () {
         restartRound();
       }
     } else if (!board.getBoard().includes("")) {
-      console.log("Draw!");
+      winner.textContent = "DRAW!";
       restartRound();
     } else {
       switchPlayerTurn();
