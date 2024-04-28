@@ -58,6 +58,7 @@ let game = (function () {
   const playerTwoNameScreen = document.querySelector(".p2");
   const playerOneScore = document.querySelector(".player-one-score");
   const playerTwoScore = document.querySelector(".player-two-score");
+  const winner = document.querySelector(".winner");
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
     [0, 1, 2],
@@ -145,7 +146,7 @@ let game = (function () {
       playerTwoScore.textContent = players[1].getScore();
       console.log(activePlayer.getScore());
       if (currentPlayerScore == 2) {
-        console.log(`${activePlayer.getName()} WIN!`);
+        winner.textContent = `${activePlayer.getName()} WIN!`;
         restartGame();
       } else {
         restartRound();
