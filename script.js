@@ -92,7 +92,13 @@ let game = (function () {
     activePlayer = players[0];
   }
 
-  function setPlayersName(params) {}
+  function setPlayersName(...params) {
+    const [player1, player2] = params;
+    players[0].setPlayer(player1);
+    players[1].setPlayer(player2);
+    playerOneNameScreen.textContent = player1;
+    playerTwoNameScreen.textContent = player2;
+  }
 
   function cellClicked() {
     const cellIndex = this.getAttribute("cellIndex");
