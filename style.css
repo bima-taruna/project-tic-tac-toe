@@ -60,6 +60,8 @@ form {
 
 input {
   padding: 0.5rem;
+  border: none;
+  border-radius: 0.2rem;
 }
 
 .set-player {
@@ -71,6 +73,20 @@ input {
   border-radius: 1rem;
   border: none;
   cursor: pointer;
+}
+
+.game-status {
+  padding: 1rem;
+  text-align: center;
+}
+
+.player-turn {
+  font-size: 1.2rem;
+}
+
+.winner {
+  font-size: 2rem;
+  font-weight: bold;
 }
 
 .container {
