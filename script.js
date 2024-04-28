@@ -53,6 +53,7 @@ function Gameboard() {
 let game = (function () {
   const playerOneNameInput = document.getElementById("player-one");
   const playerTwoNameInput = document.getElementById("player-two");
+  const playersTurnStatus = document.querySelector(".player-turn");
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
     [0, 1, 2],
@@ -108,7 +109,7 @@ let game = (function () {
   }
 
   function printNewRound() {
-    console.log(`${getActivePlayer().getName()}'s turn .`);
+    playersTurnStatus.textContent = `${getActivePlayer().getName()}'s turn .`;
   }
 
   function checkWin() {
