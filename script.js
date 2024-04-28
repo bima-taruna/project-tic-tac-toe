@@ -51,6 +51,8 @@ function Gameboard() {
 }
 
 let game = (function () {
+  const playerOneNameInput = document.getElementById("player-one");
+  const playerTwoNameInput = document.getElementById("player-two");
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
     [0, 1, 2],
@@ -73,10 +75,10 @@ let game = (function () {
   initializePlayer();
 
   function initializePlayer() {
-    let playerOneName = prompt("insert player one name : ", "PlayerOne");
+    let playerOneName = playerOneNameInput.value;
     let playerOne = Player(playerOneName, "X");
     players[0] = playerOne;
-    let playerTwoName = prompt("insert player two name : ", "PlayerTwo");
+    let playerTwoName = playerTwoNameInput.value;
     let playerTwo = Player(playerTwoName, "O");
     players[1] = playerTwo;
     activePlayer = players[0];
