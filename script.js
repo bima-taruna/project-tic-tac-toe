@@ -54,6 +54,8 @@ let game = (function () {
   const playerOneNameInput = document.getElementById("player-one");
   const playerTwoNameInput = document.getElementById("player-two");
   const playersTurnStatus = document.querySelector(".player-turn");
+  const playerOneNameScreen = document.querySelector(".p1");
+  const playerTwoNameScreen = document.querySelector(".p2");
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
     [0, 1, 2],
@@ -79,11 +81,15 @@ let game = (function () {
     let playerOneName = playerOneNameInput.value;
     let playerOne = Player(playerOneName, "X");
     players[0] = playerOne;
+    playerOneNameScreen.textContent = playerOneName;
     let playerTwoName = playerTwoNameInput.value;
     let playerTwo = Player(playerTwoName, "O");
     players[1] = playerTwo;
+    playerTwoNameScreen.textContent = playerTwoName;
     activePlayer = players[0];
   }
+
+  function setPlayersName(params) {}
 
   function cellClicked() {
     const cellIndex = this.getAttribute("cellIndex");
