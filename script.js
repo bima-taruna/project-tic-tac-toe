@@ -58,6 +58,7 @@ let game = (function () {
   const playerTwoNameScreen = document.querySelector(".p2");
   const playerOneScore = document.querySelector(".player-one-score");
   const playerTwoScore = document.querySelector(".player-two-score");
+  const setPlayersNameForm = document.querySelector(".set-player-form");
   const winner = document.querySelector(".winner");
   const cells = document.querySelectorAll(".cell");
   const winningCondition = [
@@ -76,6 +77,11 @@ let game = (function () {
 
   cells.forEach((item) => {
     item.addEventListener("click", cellClicked);
+  });
+
+  setPlayersNameForm.addEventListener("submit", (e) => {
+    e.preventDefault();
+    setPlayersName(playerOneNameInput.value, playerTwoNameInput.value);
   });
 
   initializePlayer();
